@@ -27,7 +27,7 @@ fn main() {
     string("Happy Monday!".to_string().replace("Mon", "Tues"));
     string("mY sHiFt KeY iS sTiCkY".to_lowercase());
 
-    // from creates owned data from borrowed data 
+    // creates owned data from borrowed data 
     // from &str to String
     let s = "hello".to_owned();
 }
