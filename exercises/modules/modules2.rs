@@ -7,9 +7,10 @@
 
 mod delicious_snacks {
     // TODO: Fix these use statements
+    // 可以访问同级模块
     pub use self::fruits::PEAR as fruit;
     pub use self::veggies::CUCUMBER as veggie;
-
+    
     mod fruits {
         pub const PEAR: &'static str = "Pear";
         pub const APPLE: &'static str = "Apple";
