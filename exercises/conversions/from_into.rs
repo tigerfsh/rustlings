@@ -38,7 +38,11 @@ impl Default for Person {
 // I AM NOT DONE
 
 impl From<&str> for Person {
-    fn from(s: &str) -> Person {
+    fn from(value: &str) -> Self {
+        let infos = value.split(",").collect::<Vec<&str>>();
+        let name = infos[0];
+        let age: usize = infos[1].parse::<usize>().unwrap();
+        Self { name: name.to_string(), age: age }
     }
 }
 
