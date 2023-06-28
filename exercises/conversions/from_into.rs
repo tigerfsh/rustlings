@@ -2,6 +2,7 @@
 // If From is implemented correctly for a type, the Into trait should work conversely.
 // You can read more about it at https://doc.rust-lang.org/std/convert/trait.From.html
 // Execute `rustlings hint from_into` or use the `hint` watch subcommand for a hint.
+// use regex::Regex;
 
 #[derive(Debug)]
 struct Person {
@@ -35,14 +36,40 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of Person
 // Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
+
 
 impl From<&str> for Person {
     fn from(value: &str) -> Self {
+        // let re = Regex::new(r"^\w+,\d+$");
+        // if !re.is_match(value) {
+        //     return Self::default();
+        // }
+
+        if !value.contains(",") {
+            return Self::default();
+        }
         let infos = value.split(",").collect::<Vec<&str>>();
+        if infos.len() != 2 {
+            return Self::default();
+        }
         let name = infos[0];
-        let age: usize = infos[1].parse::<usize>().unwrap();
-        Self { name: name.to_string(), age: age }
+        // get name
+        if name.len() == 0 {
+            return Self::default();
+        }
+
+        // get age
+        let age = match infos[1].parse::<usize>() {
+            Ok(age) => age,
+            Err(_) => {
+                return Self::default();
+            }
+        };
+
+        Self {
+            name: name.to_string(),
+            age: age,
+        }
     }
 }
 
